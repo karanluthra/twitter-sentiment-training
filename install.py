@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 # Modified Twitter Sentiment Corpus Install Script
 # 
 # as per the Twitter API v1.1 https://dev.twitter.com/docs/api/1.1/overview
@@ -43,10 +45,13 @@
 import csv, getpass, json, os, time, urllib, oauth2 as oauth, time
 
 # Provide your access token and key, and consumer token and key as the global variables declared here.
-TOKEN_KEY = "--"
-TOKEN_SECRET = "--"
-CONSUMER_KEY = "--"
-CONSUMER_SECRET = "--"
+TOKEN_KEY = ""
+TOKEN_SECRET = ""
+CONSUMER_KEY = ""
+CONSUMER_SECRET = ""
+
+def provided_keys():
+    return (TOKEN_KEY and TOKEN_SECRET and CONSUMER_KEY and CONSUMER_SECRET)
 
 def get_user_params():
 
@@ -159,10 +164,10 @@ def pull_data(id, raw_dir) :
     # catching json response in resp, data in sdata(string)
     resp, sdata = client.request(req.url)
     
-    #converting string data into dictionary
+    # converting string data into dictionary
     data = json.loads(sdata)
     
-    #writing each response as a .json file
+    # writing each response as a .json file
     with open(raw_dir + id + '.json', 'wb') as outfile:
       json.dump(data, outfile, indent=1, separators = (',',':'))
    
@@ -270,6 +275,11 @@ def build_output_corpus( out_filename, raw_dir, total_list ):
 
 
 def main():
+
+    # check if access/consumer tokens and keys are provided
+    if not provided_keys():
+        print ('--> Please edit install.py, and provide all the tokens/keys as global variables declared here.\n')
+        raise RuntimeError('error in authentication')
 
     # get user parameters
     user_params = get_user_params()
