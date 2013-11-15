@@ -17,14 +17,14 @@ Because of restrictions in Twitter’s Terms of Service, the actual tweets can n
 with the sentiment corpus. A small Python script is included to download all of the tweets. Due
 to limitations in Twitter’s API, the download process takes about 43 hours.
 
-Just four easy steps:
-1. Set your access key and secret, consumer key and secret to the global variables declared at the beginning of install.py
-2. Start the tweet downloader script: python install.py
-3. Hit enter three times to except the defaults.
-4. Wait till the script indicates that it’s done.
+Just four easy steps:  
+1. Set your access key and secret, consumer key and secret to the global variables declared at the beginning of install.py  
+2. Start the tweet downloader script: `python install.py`  
+3. Hit enter three times to accept the defaults.  
+4. Wait till the script indicates that it’s done.  
 
 Note: the script is smart enough to resume where it left off if downloading is interrupted.
-The completed corpus will be in full-corpus.csv. A copy of all the raw data downloaded from Twitter is kept in /rawdata.
+The completed corpus will be in full-corpus.csv. A copy of all the raw data downloaded from Twitter is kept in rawdata/.
 
 ----
 
