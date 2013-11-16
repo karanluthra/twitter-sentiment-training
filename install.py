@@ -50,8 +50,14 @@ TOKEN_SECRET = ""
 CONSUMER_KEY = ""
 CONSUMER_SECRET = ""
 
-def provided_keys():
-    return (TOKEN_KEY and TOKEN_SECRET and CONSUMER_KEY and CONSUMER_SECRET)
+def check_if_keys_provided():
+
+    # check if access/consumer tokens and keys are provided
+    if not (TOKEN_KEY and TOKEN_SECRET and CONSUMER_KEY and CONSUMER_SECRET):
+        print ('--> Please edit install.py, and provide all the tokens/keys as global variables declared here.\n')
+        raise RuntimeError('error in authentication')
+
+    return
 
 def get_user_params():
 
@@ -276,10 +282,7 @@ def build_output_corpus( out_filename, raw_dir, total_list ):
 
 def main():
 
-    # check if access/consumer tokens and keys are provided
-    if not provided_keys():
-        print ('--> Please edit install.py, and provide all the tokens/keys as global variables declared here.\n')
-        raise RuntimeError('error in authentication')
+    check_if_keys_provided()
 
     # get user parameters
     user_params = get_user_params()
